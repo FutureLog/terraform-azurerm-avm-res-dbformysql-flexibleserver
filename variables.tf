@@ -149,12 +149,10 @@ variable "high_availability" {
     mode                      = string
     standby_availability_zone = optional(string)
   })
-  default = {
-    mode                      = "ZoneRedundant"
-    standby_availability_zone = null
-  }
+  default     = null
   description = <<-EOT
-  - `mode` - (Required) The high availability mode for the MySQL Flexible Server. Only `ZoneRedundant` is supported. See: https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/DBforMySQL/flexibleServers/#enable-ha-with-zone-redundancy
+  High availability configuration. Set to null to disable HA (required for Burstable SKUs).
+  - `mode` - (Required) The high availability mode for the MySQL Flexible Server. Possible values are `ZoneRedundant` and `SameZone`.
   - `standby_availability_zone` - (Optional) Specifies the Availability Zone in which the standby Flexible Server should be located. Possible values are `1`, `2` and `3`.
   EOT
 }
